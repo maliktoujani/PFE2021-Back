@@ -4,6 +4,7 @@ import com.pfe2021.PFE2021.exceptions.SolutionPartenaireNotFoundException;
 import com.pfe2021.PFE2021.model.SolutionPartenaire;
 import com.pfe2021.PFE2021.repository.SolutionPartenaireRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -30,10 +31,12 @@ public class SolutionPartenaireService {
 
     public SolutionPartenaire addSolutionPartenaire(SolutionPartenaire solutionPartenaire){
         solutionPartenaire.setId(UUID.randomUUID().toString());
+        solutionPartenaire.setPassword(new BCryptPasswordEncoder().encode(solutionPartenaire.getPassword()));
         return solutionPartenaireRepository.save(solutionPartenaire);
     }
 
     public SolutionPartenaire updateSolutionPartenaire(SolutionPartenaire solutionPartenaire){
+        solutionPartenaire.setPassword(new BCryptPasswordEncoder().encode(solutionPartenaire.getPassword()));
         return solutionPartenaireRepository.save(solutionPartenaire);
     }
 

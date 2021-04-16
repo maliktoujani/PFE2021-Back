@@ -48,4 +48,5 @@ public class ContratRessource {
         contratService.deleteContrat(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 }
