@@ -1,10 +1,9 @@
 package com.pfe2021.PFE2021.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -18,6 +17,9 @@ public class Contrat implements Serializable {
     private Date dateDebut;
     private Date dateFin;
     private String label;
+    @JsonIgnoreProperties(value = {"contrats"})
+    @OneToOne
+    private SolutionPartenaire solutionPartenaire;
 
     public Contrat(String id, Date dateDebut, Date dateFin, String label) {
         this.id = id;
@@ -60,4 +62,13 @@ public class Contrat implements Serializable {
     public void setLabel(String label) {
         this.label = label;
     }
+
+    public SolutionPartenaire getSolutionPartenaire() {
+        return solutionPartenaire;
+    }
+
+    public void setSolutionPartenaire(SolutionPartenaire solutionPartenaire) {
+        this.solutionPartenaire = solutionPartenaire;
+    }
+
 }

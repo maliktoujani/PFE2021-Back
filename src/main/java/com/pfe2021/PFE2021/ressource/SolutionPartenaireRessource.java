@@ -18,7 +18,6 @@ public class SolutionPartenaireRessource {
         this.solutionPartenaireService=solutionPartenaireService;
     }
 
-
     @GetMapping("/all")
     public ResponseEntity<List<SolutionPartenaire>> getAllSolutions(){
         List<SolutionPartenaire>solutions=solutionPartenaireService.findAllSolutions();
