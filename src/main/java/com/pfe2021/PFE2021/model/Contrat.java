@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 public class Contrat implements Serializable {
@@ -21,6 +22,9 @@ public class Contrat implements Serializable {
     @JsonIgnoreProperties(value = {"contrats"})
     @OneToOne
     private SolutionPartenaire solutionPartenaire;
+    @JsonIgnoreProperties(value = {"contrat"})
+    @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL)
+    private List<InfoAcces> infoAcces;
 
     public Contrat(String id, Date dateDebut, Date dateFin, String label) {
         this.id = id;
@@ -79,5 +83,15 @@ public class Contrat implements Serializable {
     public void setSolutionPartenaire(SolutionPartenaire solutionPartenaire) {
         this.solutionPartenaire = solutionPartenaire;
     }
+
+    public List<InfoAcces> getInfoAcces() {
+        return infoAcces;
+    }
+
+    public void setInfoAcces(List<InfoAcces> infoAcces) {
+        this.infoAcces = infoAcces;
+    }
+
+
 
 }
