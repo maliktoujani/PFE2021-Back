@@ -2,9 +2,7 @@ package com.pfe2021.PFE2021.service;
 
 import com.pfe2021.PFE2021.exceptions.SolutionPartenaireNotFoundException;
 import com.pfe2021.PFE2021.model.Contrat;
-import com.pfe2021.PFE2021.model.SolutionPartenaire;
 import com.pfe2021.PFE2021.repository.ContratRepository;
-import com.pfe2021.PFE2021.repository.SolutionPartenaireRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +15,10 @@ import java.util.UUID;
 public class ContratService {
 
     private final ContratRepository contratRepository;
-    private final SolutionPartenaireRepository solutionPartenaireRepository;
 
     @Autowired
-    public ContratService (ContratRepository contratRepository, SolutionPartenaireRepository solutionPartenaireRepository){
+    public ContratService (ContratRepository contratRepository){
         this.contratRepository = contratRepository;
-        this.solutionPartenaireRepository = solutionPartenaireRepository;
     }
 
     public List<Contrat> findAllContrats(){
