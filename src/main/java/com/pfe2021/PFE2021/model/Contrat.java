@@ -14,6 +14,7 @@ public class Contrat implements Serializable {
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
+    private String title;
     private Date dateDebut;
     private Date dateFin;
     private String label;
@@ -37,6 +38,14 @@ public class Contrat implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Date getDateDebut() {
