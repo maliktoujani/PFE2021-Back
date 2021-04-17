@@ -20,6 +20,9 @@ public class InfoAcces implements Serializable {
     @JsonIgnoreProperties(value = {"infoAcces"})
     @OneToMany( mappedBy = "infoAcces", cascade = CascadeType.ALL )
     private List<PeriodeAcces> periodeAcces;
+    @JsonIgnoreProperties(value = {"infoAcces"})
+    @OneToOne
+    private WebService webService;
 
     public InfoAcces(String id, String commentaire) {
         this.id = id;
@@ -59,5 +62,13 @@ public class InfoAcces implements Serializable {
 
     public void setPeriodeAcces(List<PeriodeAcces> periodeAcces) {
         this.periodeAcces = periodeAcces;
+    }
+
+    public WebService getWebService() {
+        return webService;
+    }
+
+    public void setWebService(WebService webService) {
+        this.webService = webService;
     }
 }
