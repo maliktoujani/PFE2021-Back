@@ -1,7 +1,6 @@
 package com.pfe2021.PFE2021.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,9 +10,8 @@ import java.util.List;
 public class WebService implements Serializable {
 
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String url;
     private String format;
     private String methodeHttp;
@@ -21,7 +19,7 @@ public class WebService implements Serializable {
     @OneToMany( mappedBy = "webService", cascade = CascadeType.ALL )
     private List<InfoAcces> infoAcces;
 
-    public WebService(String id, String url, String format, String methodeHttp) {
+    public WebService(Long id, String url, String format, String methodeHttp) {
         this.id = id;
         this.url = url;
         this.format = format;
@@ -31,11 +29,11 @@ public class WebService implements Serializable {
     public WebService() {
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

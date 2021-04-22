@@ -1,7 +1,6 @@
 package com.pfe2021.PFE2021.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,9 +11,8 @@ import java.util.List;
 public class Contrat implements Serializable {
 
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String title;
     private Date dateDebut;
     private Date dateFin;
@@ -26,7 +24,7 @@ public class Contrat implements Serializable {
     @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL)
     private List<InfoAcces> infoAcces;
 
-    public Contrat(String id, Date dateDebut, Date dateFin, String label) {
+    public Contrat(Long id, Date dateDebut, Date dateFin, String label) {
         this.id = id;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
@@ -36,11 +34,11 @@ public class Contrat implements Serializable {
     public Contrat() {
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

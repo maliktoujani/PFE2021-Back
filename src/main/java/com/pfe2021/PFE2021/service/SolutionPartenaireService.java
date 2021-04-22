@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @Transactional
@@ -25,12 +24,11 @@ public class SolutionPartenaireService {
         return solutionPartenaireRepository.findAll();
     }
 
-    public SolutionPartenaire findSolutionPartenaireById(String id){
+    public SolutionPartenaire findSolutionPartenaireById(Long id){
         return solutionPartenaireRepository.findSolutionPartenaireById(id).orElseThrow(() -> new SolutionPartenaireNotFoundException("Solution partenaire by id"+ id + "was not found"));
  }
 
     public SolutionPartenaire addSolutionPartenaire(SolutionPartenaire solutionPartenaire){
-        solutionPartenaire.setId(UUID.randomUUID().toString());
         solutionPartenaire.setPassword(new BCryptPasswordEncoder().encode(solutionPartenaire.getPassword()));
         return solutionPartenaireRepository.save(solutionPartenaire);
     }
@@ -40,7 +38,7 @@ public class SolutionPartenaireService {
         return solutionPartenaireRepository.save(solutionPartenaire);
     }
 
-    public void deleteSolutionPartenaire(String id){
+    public void deleteSolutionPartenaire(Long id){
         solutionPartenaireRepository.deleteSolutionPartenaireById(id);
     }
 }

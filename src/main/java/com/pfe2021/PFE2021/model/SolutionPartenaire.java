@@ -1,7 +1,6 @@
 package com.pfe2021.PFE2021.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,9 +10,8 @@ import java.util.List;
 public class SolutionPartenaire implements Serializable {
 
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String username;
     private String password;
     private String email;
@@ -22,7 +20,7 @@ public class SolutionPartenaire implements Serializable {
     @OneToMany( mappedBy = "solutionPartenaire", cascade = CascadeType.ALL)
     private List<Contrat> contrats;
 
-    public SolutionPartenaire(String id, String password, String email, Long phone) {
+    public SolutionPartenaire(Long id, String password, String email, Long phone) {
         this.id = id;
         this.password = password;
         this.email = email;
@@ -32,11 +30,11 @@ public class SolutionPartenaire implements Serializable {
     public SolutionPartenaire() {
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

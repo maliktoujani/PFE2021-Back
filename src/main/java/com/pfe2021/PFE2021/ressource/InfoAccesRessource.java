@@ -27,7 +27,7 @@ public class InfoAccesRessource {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<InfoAcces> getInfoAccesById(@PathVariable("id") String id){
+    public ResponseEntity<InfoAcces> getInfoAccesById(@PathVariable("id") Long id){
         InfoAcces infoAcces= infoAccesService.findInfoAccesById(id);
         return new ResponseEntity<>(infoAcces, HttpStatus.OK);
     }
@@ -45,7 +45,7 @@ public class InfoAccesRessource {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteInfoAcces(@PathVariable("id") String id){
+    public ResponseEntity<?> deleteInfoAcces(@PathVariable("id") Long id){
         infoAccesService.deleteInfoAcces(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

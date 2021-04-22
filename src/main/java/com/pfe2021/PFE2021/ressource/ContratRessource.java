@@ -26,7 +26,7 @@ public class ContratRessource {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Contrat> getContratById(@PathVariable("id") String id){
+    public ResponseEntity<Contrat> getContratById(@PathVariable("id") Long id){
         Contrat contrat= contratService.findContratById(id);
         return new ResponseEntity<>(contrat, HttpStatus.OK);
     }
@@ -44,7 +44,7 @@ public class ContratRessource {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteContrat(@PathVariable("id") String id){
+    public ResponseEntity<?> deleteContrat(@PathVariable("id") Long id){
         contratService.deleteContrat(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

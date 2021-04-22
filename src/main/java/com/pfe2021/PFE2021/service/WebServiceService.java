@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @Transactional
@@ -24,12 +23,11 @@ public class WebServiceService {
         return webServiceRepository.findAll();
     }
 
-    public WebService findWebServiceById(String id){
+    public WebService findWebServiceById(Long id){
         return webServiceRepository.findWebServiceById(id).orElseThrow(() -> new SolutionPartenaireNotFoundException("Solution partenaire by id"+ id + "was not found"));
     }
 
     public WebService addWebService(WebService webService){
-        webService.setId((UUID.randomUUID().toString()));
         return webServiceRepository.save(webService);
     }
 
@@ -37,7 +35,7 @@ public class WebServiceService {
         return webServiceRepository.save(webService);
     }
 
-    public void deleteWebService(String id){
+    public void deleteWebService(Long id){
         webServiceRepository.deleteWebServiceById(id);
     }
 }

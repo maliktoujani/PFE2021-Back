@@ -26,7 +26,7 @@ public class PeriodeAccesRessource {
         }
 
         @GetMapping("/find/{id}")
-        public ResponseEntity<PeriodeAcces> getPeriodeAccesById(@PathVariable("id") String id){
+        public ResponseEntity<PeriodeAcces> getPeriodeAccesById(@PathVariable("id") Long id){
             PeriodeAcces periodeAcces= periodeAccesService.findPeriodeAccesById(id);
             return new ResponseEntity<>(periodeAcces, HttpStatus.OK);
         }
@@ -44,7 +44,7 @@ public class PeriodeAccesRessource {
         }
 
         @DeleteMapping("/delete/{id}")
-        public ResponseEntity<?> deletePeriodeAcces(@PathVariable("id") String id){
+        public ResponseEntity<?> deletePeriodeAcces(@PathVariable("id") Long id){
             periodeAccesService.deletePeriodeAcces(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }

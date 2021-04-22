@@ -25,7 +25,7 @@ public class SolutionPartenaireRessource {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<SolutionPartenaire> getSolutionPartenaireById(@PathVariable("id") String id){
+    public ResponseEntity<SolutionPartenaire> getSolutionPartenaireById(@PathVariable("id") Long id){
         SolutionPartenaire solutionPartenaire=solutionPartenaireService.findSolutionPartenaireById(id);
         return new ResponseEntity<>(solutionPartenaire, HttpStatus.OK);
     }
@@ -43,7 +43,7 @@ public class SolutionPartenaireRessource {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteSolutionPartenaire(@PathVariable("id") String id){
+    public ResponseEntity<?> deleteSolutionPartenaire(@PathVariable("id") Long id){
         solutionPartenaireService.deleteSolutionPartenaire(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
