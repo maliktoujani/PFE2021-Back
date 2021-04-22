@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @Transactional
@@ -25,12 +24,11 @@ public class PeriodeAccesService {
         return periodeAccesRepository.findAll();
     }
 
-    public PeriodeAcces findPeriodeAccesById(String id){
+    public PeriodeAcces findPeriodeAccesById(Long id){
         return periodeAccesRepository.findPeriodeAccesById(id).orElseThrow(() -> new SolutionPartenaireNotFoundException("Solution partenaire by id"+ id + "was not found"));
     }
 
     public PeriodeAcces addPeriodeAcces(PeriodeAcces periodeAcces){
-        periodeAcces.setId((UUID.randomUUID().toString()));
         return periodeAccesRepository.save(periodeAcces);
     }
 
@@ -38,7 +36,7 @@ public class PeriodeAccesService {
         return periodeAccesRepository.save(periodeAcces);
     }
 
-    public void deletePeriodeAcces(String id){
+    public void deletePeriodeAcces(Long id){
         periodeAccesRepository.deletePeriodeAccesById(id);
     }
 

@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface WebServiceRepository extends JpaRepository<WebService,String> {
-    Optional<WebService> findWebServiceById(String id);
-    void deleteWebServiceById(String id);
+public interface WebServiceRepository extends JpaRepository<WebService, Long> {
+    Optional<WebService> findWebServiceById(Long id);
+    void deleteWebServiceById(Long id);
 }

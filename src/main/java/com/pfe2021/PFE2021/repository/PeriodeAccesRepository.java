@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface PeriodeAccesRepository extends JpaRepository<PeriodeAcces, String> {
-    Optional<PeriodeAcces> findPeriodeAccesById(String id);
-    void deletePeriodeAccesById(String id);
+public interface PeriodeAccesRepository extends JpaRepository<PeriodeAcces, Long> {
+    Optional<PeriodeAcces> findPeriodeAccesById(Long id);
+    void deletePeriodeAccesById(Long id);
 }

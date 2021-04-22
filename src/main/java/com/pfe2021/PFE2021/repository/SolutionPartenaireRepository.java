@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface SolutionPartenaireRepository extends JpaRepository<SolutionPartenaire, String> {
-    Optional<SolutionPartenaire> findSolutionPartenaireById(String id);
-    void deleteSolutionPartenaireById(String id);
+public interface SolutionPartenaireRepository extends JpaRepository<SolutionPartenaire, Long> {
+    Optional<SolutionPartenaire> findSolutionPartenaireById(Long id);
+    void deleteSolutionPartenaireById(Long id);
 }

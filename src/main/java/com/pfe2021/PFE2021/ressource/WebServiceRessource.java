@@ -26,7 +26,7 @@ public class WebServiceRessource {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<WebService> getWebServiceById(@PathVariable("id") String id){
+    public ResponseEntity<WebService> getWebServiceById(@PathVariable("id") Long id){
         WebService webService= webServiceService.findWebServiceById(id);
         return new ResponseEntity<>(webService, HttpStatus.OK);
     }
@@ -44,7 +44,7 @@ public class WebServiceRessource {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteWebService(@PathVariable("id") String id){
+    public ResponseEntity<?> deleteWebService(@PathVariable("id") Long id){
         webServiceService.deleteWebService(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

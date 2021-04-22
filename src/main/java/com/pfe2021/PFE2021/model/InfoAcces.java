@@ -1,7 +1,6 @@
 package com.pfe2021.PFE2021.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -10,9 +9,8 @@ import java.util.List;
 public class InfoAcces implements Serializable {
 
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String commentaire;
     @JsonIgnoreProperties(value = {"infoAcces"})
     @OneToOne
@@ -24,7 +22,7 @@ public class InfoAcces implements Serializable {
     @OneToOne
     private WebService webService;
 
-    public InfoAcces(String id, String commentaire) {
+    public InfoAcces(Long id, String commentaire) {
         this.id = id;
         this.commentaire = commentaire;
     }
@@ -32,11 +30,11 @@ public class InfoAcces implements Serializable {
     public InfoAcces() {
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
