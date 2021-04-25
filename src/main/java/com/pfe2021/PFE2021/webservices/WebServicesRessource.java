@@ -1,4 +1,4 @@
-package com.pfe2021.PFE2021.consumeApi;
+package com.pfe2021.PFE2021.webservices;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping
-public class ConsumeApiRessource {
+@RequestMapping("/webservices")
+public class WebServicesRessource {
 
-    private final ConsumeApiService consumeApiService;
+    private final WebServicesService webServicesService;
 
-    public ConsumeApiRessource(ConsumeApiService consumeApiService){
-        this.consumeApiService = consumeApiService;
+    public WebServicesRessource(WebServicesService webServicesService){
+        this.webServicesService = webServicesService;
     }
 
-    @GetMapping("{id}/all")
+    @GetMapping("/{id}/all")
     public ResponseEntity<List<Object>> getAll(@PathVariable("id") Long id) {
-        List<Object> objects= consumeApiService.findAll(id);
+        List<Object> objects= webServicesService.findAll(id);
         return new ResponseEntity<>(objects, HttpStatus.OK);
     }
 

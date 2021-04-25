@@ -1,4 +1,4 @@
-package com.pfe2021.PFE2021.consumeApi;
+package com.pfe2021.PFE2021.webservices;
 
 import com.pfe2021.PFE2021.model.WebService;
 import com.pfe2021.PFE2021.repository.WebServiceRepository;
@@ -12,14 +12,14 @@ import java.util.List;
 
 @Service
 @Transactional
-public class ConsumeApiService {
+public class WebServicesService {
 
     private final WebServiceRepository webServiceRepository;
 
     private RestTemplate restTemplate=new RestTemplate();
 
     @Autowired
-    public ConsumeApiService(WebServiceRepository webServiceRepository) {
+    public WebServicesService(WebServiceRepository webServiceRepository) {
         this.webServiceRepository = webServiceRepository;
     }
 
