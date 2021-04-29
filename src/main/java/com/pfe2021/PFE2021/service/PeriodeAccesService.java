@@ -1,7 +1,9 @@
 package com.pfe2021.PFE2021.service;
 
 import com.pfe2021.PFE2021.exceptions.SolutionPartenaireNotFoundException;
+import com.pfe2021.PFE2021.model.InfoAcces;
 import com.pfe2021.PFE2021.model.PeriodeAcces;
+import com.pfe2021.PFE2021.repository.InfoAccesRepository;
 import com.pfe2021.PFE2021.repository.PeriodeAccesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +16,12 @@ import java.util.List;
 public class PeriodeAccesService {
 
     private final PeriodeAccesRepository periodeAccesRepository;
+    private final InfoAccesRepository infoAccesRepository;
 
     @Autowired
-    public PeriodeAccesService (PeriodeAccesRepository periodeAccesRepository){
+    public PeriodeAccesService (PeriodeAccesRepository periodeAccesRepository, InfoAccesRepository infoAccesRepository){
         this.periodeAccesRepository = periodeAccesRepository;
+        this.infoAccesRepository = infoAccesRepository;
     }
 
     public List<PeriodeAcces> findAllPeriodeAcces(){
@@ -38,6 +42,15 @@ public class PeriodeAccesService {
 
     public void deletePeriodeAcces(Long id){
         periodeAccesRepository.deletePeriodeAccesById(id);
+    }
+
+    public List<PeriodeAcces> addListPeriodeAccesWithInfoAcces(List<PeriodeAcces> periodeAcces, Long id){
+    InfoAcces infoAcces = infoAccesRepository.findInfoAccesById(id).get();
+        for(PeriodeAcces pa : periodeAcces){
+            pa.setInfoAcces(infoAcces);
+            this.addPeriodeAcces(pa);
+        }
+        return periodeAcces;
     }
 
 }

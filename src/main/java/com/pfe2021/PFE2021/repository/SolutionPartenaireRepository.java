@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface SolutionPartenaireRepository extends JpaRepository<SolutionPartenaire, Long> {
     Optional<SolutionPartenaire> findSolutionPartenaireById(Long id);
     void deleteSolutionPartenaireById(Long id);
-    Optional<SolutionPartenaire> findByUsername(String username);
+    Optional<SolutionPartenaire> findSolutionPartenaireByUsername(String username);
 }

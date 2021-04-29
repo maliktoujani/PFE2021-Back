@@ -77,5 +77,4 @@ public class SolutionPartenaire implements Serializable {
     public void setContrats(List<Contrat> contrat) {
         this.contrats = contrat;
     }
-
 }

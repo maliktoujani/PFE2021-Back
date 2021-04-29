@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/webservice")
+@RequestMapping("/admin/webservice")
 public class WebServiceRessource {
 
     private final WebServiceService webServiceService;

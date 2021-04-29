@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/infoacces")
+@RequestMapping("/admin/infoacces")
 public class InfoAccesRessource {
 
     private final InfoAccesService infoAccesService;
@@ -38,6 +38,12 @@ public class InfoAccesRessource {
         return new ResponseEntity<>(infoAcces, HttpStatus.CREATED);
     }
 
+    @PostMapping("/addlist")
+    public ResponseEntity<List<InfoAcces>> addListInfoAcces(@RequestBody List<InfoAcces> infoAcces){
+        List<InfoAcces> newInfoAcces=infoAccesService.addListInfoAcces(infoAcces);
+        return new ResponseEntity<>(infoAcces, HttpStatus.CREATED);
+    }
+
     @PutMapping("/update")
     public ResponseEntity<InfoAcces> updateInfoAcces(@RequestBody InfoAcces infoAcces){
         InfoAcces updateInfoAcces=infoAccesService.updateInfoAcces(infoAcces);
@@ -48,5 +54,12 @@ public class InfoAccesRessource {
     public ResponseEntity<?> deleteInfoAcces(@PathVariable("id") Long id){
         infoAccesService.deleteInfoAcces(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+    @PostMapping("/addinfoacceswithcontrat/{id}")
+    public ResponseEntity<InfoAcces> addInfoAccesWithContrat(@RequestBody InfoAcces infoAcces, @PathVariable Long id){
+        InfoAcces newInfoAcces=infoAccesService.addInfoAccesWithContrat(infoAcces,id);
+        return new ResponseEntity<>(infoAcces, HttpStatus.CREATED);
     }
 }

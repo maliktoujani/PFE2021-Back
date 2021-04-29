@@ -11,13 +11,13 @@ public class PeriodeAcces implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String jour;
-    private String heureDebut;
-    private String heureFin;
+    private int heureDebut;
+    private int heureFin;
     @JsonIgnoreProperties(value = {"periodeAcces"})
     @OneToOne
     private InfoAcces infoAcces;
 
-    public PeriodeAcces(Long id, String jour, String heureDebut, String heureFin) {
+    public PeriodeAcces(Long id, String jour, int heureDebut, int heureFin) {
         this.id = id;
         this.jour = jour;
         this.heureDebut = heureDebut;
@@ -43,19 +43,19 @@ public class PeriodeAcces implements Serializable {
         this.jour = jour;
     }
 
-    public String getHeureDebut() {
+    public int getHeureDebut() {
         return heureDebut;
     }
 
-    public void setHeureDebut(String heureDebut) {
+    public void setHeureDebut(int heureDebut) {
         this.heureDebut = heureDebut;
     }
 
-    public String getHeureFin() {
+    public int getHeureFin() {
         return heureFin;
     }
 
-    public void setHeureFin(String heureFin) {
+    public void setHeureFin(int heureFin) {
         this.heureFin = heureFin;
     }
 

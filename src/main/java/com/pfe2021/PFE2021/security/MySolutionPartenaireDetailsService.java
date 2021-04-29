@@ -17,7 +17,7 @@ public class MySolutionPartenaireDetailsService implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<SolutionPartenaire> solutionPartenaire = solutionPartenaireRepository.findByUsername(username);
+        Optional<SolutionPartenaire> solutionPartenaire = solutionPartenaireRepository.findSolutionPartenaireByUsername(username);
         solutionPartenaire.orElseThrow(()->new UsernameNotFoundException("Not found user !"));
         return solutionPartenaire.map(MySolutionPartenaireDetails::new).get();
     }
