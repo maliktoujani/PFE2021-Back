@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/admin/infoacces")
 public class InfoAccesRessource {
@@ -42,7 +41,7 @@ public class InfoAccesRessource {
     public ResponseEntity<List<InfoAcces>> addListInfoAcces(@RequestBody List<InfoAcces> infoAcces){
         List<InfoAcces> newInfoAcces=infoAccesService.addListInfoAcces(infoAcces);
         return new ResponseEntity<>(infoAcces, HttpStatus.CREATED);
-    }
+    }   
 
     @PutMapping("/update")
     public ResponseEntity<InfoAcces> updateInfoAcces(@RequestBody InfoAcces infoAcces){

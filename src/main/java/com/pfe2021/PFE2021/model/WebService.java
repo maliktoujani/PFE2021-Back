@@ -18,12 +18,17 @@ public class WebService implements Serializable {
     @JsonIgnoreProperties(value = {"webService"})
     @OneToMany( mappedBy = "webService", cascade = CascadeType.ALL )
     private List<InfoAcces> infoAcces;
+    @JsonIgnoreProperties(value = {"webService"})
+    @OneToMany( mappedBy = "webService", cascade = CascadeType.ALL )
+    private List<HistoriqueAppel> historiqueAppels;
 
-    public WebService(Long id, String url, String format, String methodeHttp) {
+    public WebService(Long id, String url, String format, String methodeHttp, List<InfoAcces> infoAcces, List<HistoriqueAppel> historiqueAppels) {
         this.id = id;
         this.url = url;
         this.format = format;
         this.methodeHttp = methodeHttp;
+        this.infoAcces = infoAcces;
+        this.historiqueAppels = historiqueAppels;
     }
 
     public WebService() {
@@ -67,5 +72,13 @@ public class WebService implements Serializable {
 
     public void setInfoAcces(List<InfoAcces> infoAcces) {
         this.infoAcces = infoAcces;
+    }
+
+    public List<HistoriqueAppel> getHistoriqueAppels() {
+        return historiqueAppels;
+    }
+
+    public void setHistoriqueAppels(List<HistoriqueAppel> historiqueAppels) {
+        this.historiqueAppels = historiqueAppels;
     }
 }

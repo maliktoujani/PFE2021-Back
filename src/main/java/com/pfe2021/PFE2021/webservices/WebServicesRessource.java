@@ -19,8 +19,8 @@ public class WebServicesRessource {
     }
 
     @GetMapping("/{id}/all")
-    public ResponseEntity<List<Object>> getAll(@PathVariable("id") Long id) {
-        List<Object> objects= webServicesService.findAll(id);
+    public ResponseEntity<Object> getAll(@PathVariable("id") Long id) {
+        Object objects= webServicesService.findAll(id);
         return new ResponseEntity<>(objects, HttpStatus.OK);
     }
 

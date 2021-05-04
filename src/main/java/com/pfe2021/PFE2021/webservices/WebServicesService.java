@@ -3,6 +3,7 @@ package com.pfe2021.PFE2021.webservices;
 import com.pfe2021.PFE2021.model.*;
 import com.pfe2021.PFE2021.repository.SolutionPartenaireRepository;
 import com.pfe2021.PFE2021.repository.WebServiceRepository;
+import com.pfe2021.PFE2021.service.HistoriqueAppelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,16 +21,19 @@ public class WebServicesService {
 
     private final WebServiceRepository webServiceRepository;
     private final SolutionPartenaireRepository solutionPartenaireRepository;
+    private final HistoriqueAppelService historiqueAppelService;
+
 
     private RestTemplate restTemplate=new RestTemplate();
 
     @Autowired
-    public WebServicesService(WebServiceRepository webServiceRepository, SolutionPartenaireRepository solutionPartenaireRepository) {
+    public WebServicesService(WebServiceRepository webServiceRepository, SolutionPartenaireRepository solutionPartenaireRepository, HistoriqueAppelService historiqueAppelService) {
         this.webServiceRepository = webServiceRepository;
         this.solutionPartenaireRepository = solutionPartenaireRepository;
+        this.historiqueAppelService = historiqueAppelService;
     }
 
-    public List<Object> findAll(Long id) {
+    public Object findAll(Long id) {
         WebService webService = webServiceRepository.findWebServiceById(id).get();
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -39,7 +43,7 @@ public class WebServicesService {
 
         LocalDateTime now = LocalDateTime.now();
 
-        Object[] objects = new Object[0];
+        Object[] objects = null;
 
         for(Contrat c : solutionPartenaire.getContrats()){
             for(InfoAcces ia : c.getInfoAcces()){
@@ -54,7 +58,20 @@ public class WebServicesService {
                 }
             }
         }
-        return Arrays.asList(objects);
+
+        HistoriqueAppel historiqueAppel = new HistoriqueAppel();
+
+        historiqueAppel.setDateHeure(now);
+        historiqueAppel.setResultat(objects!=null);
+        historiqueAppel.setSolutionPartenaire(solutionPartenaire);
+        historiqueAppel.setWebService(webService);
+
+        this.historiqueAppelService.addHistoriqueAppel(historiqueAppel);
+
+
+
+
+        return objects;
     }
 
 }
