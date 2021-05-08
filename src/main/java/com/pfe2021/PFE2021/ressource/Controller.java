@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/admin/user")
 public class Controller {
 
     @GetMapping("/login")
     public String login(){
-            return ("User successfully authenticated");
+        return ("User successfully authenticated");
     }
 
 }

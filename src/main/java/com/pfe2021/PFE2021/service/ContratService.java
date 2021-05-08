@@ -2,6 +2,7 @@ package com.pfe2021.PFE2021.service;
 
 import com.pfe2021.PFE2021.exceptions.SolutionPartenaireNotFoundException;
 import com.pfe2021.PFE2021.model.Contrat;
+import com.pfe2021.PFE2021.model.InfoAcces;
 import com.pfe2021.PFE2021.repository.ContratRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

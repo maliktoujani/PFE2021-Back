@@ -3,12 +3,11 @@ package com.pfe2021.PFE2021.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -17,11 +16,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserDetailsService userDetailsService;
+    MyUserDetailsService myUserDetailsService;
+    @Autowired
+    MySolutionPartenaireDetailsService mySolutionPartenaireDetailsService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(mySolutionPartenaireDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -29,15 +31,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.OPTIONS, "/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-//                .antMatchers("/webservice/all").hasRole("ADMIN")
-//                .antMatchers("/public").permitAll()
+                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/webservices/**").hasRole("SOLUTIONPARTENAIRE")
                 .and()
                 .httpBasic();
-
     }
 
     @Bean

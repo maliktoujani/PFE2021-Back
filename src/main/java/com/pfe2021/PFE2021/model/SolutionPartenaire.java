@@ -19,9 +19,13 @@ public class SolutionPartenaire implements Serializable {
     @JsonIgnoreProperties(value = {"solutionPartenaire"})
     @OneToMany( mappedBy = "solutionPartenaire", cascade = CascadeType.ALL)
     private List<Contrat> contrats;
+    @JsonIgnoreProperties(value = {"solutionPartenaire", "webService"})
+    @OneToMany( mappedBy = "solutionPartenaire", cascade = CascadeType.ALL )
+    private List<HistoriqueAppel> historiqueAppels;
 
-    public SolutionPartenaire(Long id, String password, String email, Long phone) {
+    public SolutionPartenaire(Long id, String username, String password, String email, Long phone) {
         this.id = id;
+        this.username = username;
         this.password = password;
         this.email = email;
         this.phone = phone;
@@ -78,4 +82,11 @@ public class SolutionPartenaire implements Serializable {
         this.contrats = contrat;
     }
 
+    public List<HistoriqueAppel> getHistoriqueAppels() {
+        return historiqueAppels;
+    }
+
+    public void setHistoriqueAppels(List<HistoriqueAppel> historiqueAppels) {
+        this.historiqueAppels = historiqueAppels;
+    }
 }

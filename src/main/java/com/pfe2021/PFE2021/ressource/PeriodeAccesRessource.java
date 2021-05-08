@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/periodeacces")
+@RequestMapping("/admin/periodeacces")
 public class PeriodeAccesRessource {
 
         private final PeriodeAccesService periodeAccesService;
@@ -34,6 +34,12 @@ public class PeriodeAccesRessource {
         @PostMapping("/add")
         public ResponseEntity<PeriodeAcces> addPeriodeAcces(@RequestBody PeriodeAcces periodeAcces){
             PeriodeAcces newPeriodeAcces=periodeAccesService.addPeriodeAcces(periodeAcces);
+            return new ResponseEntity<>(periodeAcces, HttpStatus.CREATED);
+        }
+
+        @PostMapping("/addlistPeriodeAccesWithInfoAcces/{id}")
+        public ResponseEntity<List<PeriodeAcces>> addListPeriodeAccesWithInfoAcces(@RequestBody List<PeriodeAcces> periodeAcces, @PathVariable Long id){
+            List<PeriodeAcces> newPeriodeAcces=periodeAccesService.addListPeriodeAccesWithInfoAcces(periodeAcces,id);
             return new ResponseEntity<>(periodeAcces, HttpStatus.CREATED);
         }
 

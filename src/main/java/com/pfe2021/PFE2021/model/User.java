@@ -2,10 +2,7 @@ package com.pfe2021.PFE2021.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import java.io.Serializable;
-import java.util.Collection;
 
 @Entity
 public class User implements Serializable {
@@ -14,29 +11,15 @@ public class User implements Serializable {
     private String email;
     private String password;
     private boolean activated;
-    @ManyToMany
-    @JoinTable(name="USER_ROLES")
-    private Collection<Role> roles;
 
-    public User(String username, String email, String password, boolean activated, Collection<Role> roles) {
+    public User(String username, String email, String password, boolean activated) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.activated = activated;
-        this.roles = roles;
     }
 
-    public User(){
-
-    }
-
-    public Collection<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
-    }
+    public User(){}
 
     public String getUsername() {
         return username;
