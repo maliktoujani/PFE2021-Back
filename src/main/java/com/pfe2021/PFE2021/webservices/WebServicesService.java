@@ -12,8 +12,6 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
 
 @Service
 @Transactional
@@ -67,7 +65,6 @@ public class WebServicesService {
         historiqueAppel.setWebService(webService);
 
         this.historiqueAppelService.addHistoriqueAppel(historiqueAppel);
-
 
 
 

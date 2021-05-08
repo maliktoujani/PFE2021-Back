@@ -2,10 +2,7 @@ package com.pfe2021.PFE2021.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import java.io.Serializable;
-import java.util.Collection;
 
 @Entity
 public class User implements Serializable {

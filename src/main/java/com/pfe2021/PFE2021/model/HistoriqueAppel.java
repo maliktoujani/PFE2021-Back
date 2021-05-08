@@ -3,10 +3,11 @@ package com.pfe2021.PFE2021.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-public class HistoriqueAppel {
+public class HistoriqueAppel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,13 +22,11 @@ public class HistoriqueAppel {
     @OneToOne
     private SolutionPartenaire solutionPartenaire;
 
-    public HistoriqueAppel(Long id, Boolean resultat, LocalDateTime dateHeure, String details, WebService webService, SolutionPartenaire solutionPartenaire) {
+    public HistoriqueAppel(Long id, Boolean resultat, LocalDateTime dateHeure, String details) {
         this.id = id;
         this.resultat = resultat;
         this.dateHeure = dateHeure;
         this.details = details;
-        this.webService = webService;
-        this.solutionPartenaire = solutionPartenaire;
     }
 
     public HistoriqueAppel() {

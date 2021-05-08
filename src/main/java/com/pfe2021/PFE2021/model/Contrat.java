@@ -17,7 +17,7 @@ public class Contrat implements Serializable {
     private Date dateDebut;
     private Date dateFin;
     private String label;
-    @JsonIgnoreProperties(value = {"contrats"})
+    @JsonIgnoreProperties(value = {"contrats", "historiqueAppels"})
     @OneToOne
     private SolutionPartenaire solutionPartenaire;
     @JsonIgnoreProperties(value = {"contrat"})

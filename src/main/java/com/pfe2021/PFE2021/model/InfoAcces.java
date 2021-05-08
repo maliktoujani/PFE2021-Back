@@ -18,7 +18,7 @@ public class InfoAcces implements Serializable {
     @JsonIgnoreProperties(value = {"infoAcces"})
     @OneToMany( mappedBy = "infoAcces", cascade = CascadeType.ALL )
     private List<PeriodeAcces> periodeAcces;
-    @JsonIgnoreProperties(value = {"infoAcces"})
+    @JsonIgnoreProperties(value = {"infoAcces", "historiqueAppels"})
     @OneToOne
     private WebService webService;
 

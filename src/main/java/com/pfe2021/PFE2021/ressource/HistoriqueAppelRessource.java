@@ -25,6 +25,24 @@ public class HistoriqueAppelRessource {
         return new ResponseEntity<>(historiqueAppels, HttpStatus.OK);
     }
 
+    @GetMapping("/statistiqueperday")
+    public ResponseEntity <int[]> getStatistiquePerDay(){
+        int[] statistiquePerDay = historiqueAppelService.getStatistiquePerDay();
+        return new ResponseEntity<>(statistiquePerDay, HttpStatus.OK);
+    }
+
+    @GetMapping("/statistiqueperday/{id}")
+    public ResponseEntity <int[]> getStatistiquePerDayByWebService(@PathVariable("id") Long id){
+        int[] statistiquePerDay = historiqueAppelService.getStatistiquePerDayByWebService(id);
+        return new ResponseEntity<>(statistiquePerDay, HttpStatus.OK);
+    }
+
+    @GetMapping("/todaysappelwebservice")
+    public ResponseEntity <List<HistoriqueAppel>> todaysAppelWebService(){
+        List<HistoriqueAppel> todaysAppelWebService = historiqueAppelService.todaysAppelWebService();
+        return new ResponseEntity<>(todaysAppelWebService, HttpStatus.OK);
+    }
+
     @GetMapping("/find/{id}")
     public ResponseEntity<HistoriqueAppel> getHistoriqueAppelById(@PathVariable("id") Long id){
         HistoriqueAppel historiqueAppel = historiqueAppelService.findHistoriqueAppelById(id);
