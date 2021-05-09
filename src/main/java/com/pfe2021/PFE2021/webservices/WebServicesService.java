@@ -66,8 +66,6 @@ public class WebServicesService {
 
         this.historiqueAppelService.addHistoriqueAppel(historiqueAppel);
 
-
-
         return objects;
     }
 

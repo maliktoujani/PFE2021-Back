@@ -1,6 +1,6 @@
 package com.pfe2021.PFE2021.ressource;
 
-import com.pfe2021.PFE2021.model.User;
+import com.pfe2021.PFE2021.model.Administrateur;
 import com.pfe2021.PFE2021.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +19,8 @@ public class UserRessource {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<User>> getAllUsers(){
-        List<User>users=userService.findAllUsers();
+    public ResponseEntity<List<Administrateur>> getAllUsers(){
+        List<Administrateur>users=userService.findAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 

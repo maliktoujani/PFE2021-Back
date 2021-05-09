@@ -5,21 +5,19 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
-public class User implements Serializable {
+public class Administrateur implements Serializable {
     @Id
     private String username;
     private String email;
     private String password;
-    private boolean activated;
 
-    public User(String username, String email, String password, boolean activated) {
+    public Administrateur(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.activated = activated;
     }
 
-    public User(){}
+    public Administrateur(){}
 
     public String getUsername() {
         return username;
@@ -45,11 +43,4 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public boolean isActivated() {
-        return activated;
-    }
-
-    public void setActivated(boolean activated) {
-        this.activated = activated;
-    }
 }
