@@ -18,7 +18,7 @@ public class WebService implements Serializable {
     @JsonIgnoreProperties(value = {"webService"})
     @OneToMany( mappedBy = "webService", cascade = CascadeType.ALL )
     private List<InfoAcces> infoAcces;
-    @JsonIgnoreProperties(value = {"webService", "solutionPartenaire"})
+    @JsonIgnoreProperties(value = {"webService"})
     @OneToMany( mappedBy = "webService", cascade = CascadeType.ALL )
     private List<HistoriqueAppel> historiqueAppels;
 
