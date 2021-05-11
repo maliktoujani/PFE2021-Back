@@ -19,7 +19,7 @@ public class SolutionPartenaire implements Serializable {
     @JsonIgnoreProperties(value = {"solutionPartenaire"})
     @OneToMany( mappedBy = "solutionPartenaire", cascade = CascadeType.ALL)
     private List<Contrat> contrats;
-    @JsonIgnoreProperties(value = {"solutionPartenaire", "webService"})
+    @JsonIgnoreProperties(value = {"solutionPartenaire"})
     @OneToMany( mappedBy = "solutionPartenaire", cascade = CascadeType.ALL )
     private List<HistoriqueAppel> historiqueAppels;
 
