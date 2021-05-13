@@ -22,6 +22,8 @@ public class HistoriqueAppel implements Serializable {
     @OneToOne
     private SolutionPartenaire solutionPartenaire;
 
+    //Les Getters, les Setters, un constructeur par défaut et un constructeur paramétré
+
     public HistoriqueAppel(Long id, Boolean resultat, LocalDateTime dateHeure, String details) {
         this.id = id;
         this.resultat = resultat;

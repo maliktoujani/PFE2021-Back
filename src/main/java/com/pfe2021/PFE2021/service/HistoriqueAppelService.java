@@ -2,7 +2,9 @@ package com.pfe2021.PFE2021.service;
 
 import com.pfe2021.PFE2021.exceptions.SolutionPartenaireNotFoundException;
 import com.pfe2021.PFE2021.model.HistoriqueAppel;
+import com.pfe2021.PFE2021.model.WebService;
 import com.pfe2021.PFE2021.repository.HistoriqueAppelRepository;
+import com.pfe2021.PFE2021.repository.WebServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +18,12 @@ import java.util.List;
 public class HistoriqueAppelService {
 
     private final HistoriqueAppelRepository historiqueAppelRepository;
+    private final WebServiceRepository webServiceRepository;
 
     @Autowired
-    public HistoriqueAppelService (HistoriqueAppelRepository historiqueAppelRepository){
+    public HistoriqueAppelService (HistoriqueAppelRepository historiqueAppelRepository, WebServiceRepository webServiceRepository){
         this.historiqueAppelRepository = historiqueAppelRepository;
+        this.webServiceRepository = webServiceRepository;
     }
 
     public List<HistoriqueAppel> findAllHistoriqueAppel(){
@@ -42,12 +46,15 @@ public class HistoriqueAppelService {
         historiqueAppelRepository.deleteHistoriqueAppelById(id);
     }
 
-    public int[] getStatistiquePerDay(){
-        List<HistoriqueAppel> historiqueAppel = this.historiqueAppelRepository.findAll();
-        int [] statistiquePerDay = {0, 0, 0, 0, 0, 0, 0};
+    public List<StatistiquePerDay> getStatistiquePerDay() {
+        List<WebService> webServices = this.webServiceRepository.findAll();
+        List<StatistiquePerDay> statistiquePerDay = new ArrayList<>();
 
-        for(HistoriqueAppel ha : historiqueAppel){
-            statistiquePerDay[ha.getDateHeure().getDayOfWeek().getValue()-1]+=1;
+        for (WebService ws : webServices) {
+            StatistiquePerDay aux = new StatistiquePerDay();
+            aux.setLabel(ws.getUrl());
+            aux.setData(this.getStatistiquePerDayByWebService(ws.getId()));
+            statistiquePerDay.add(aux);
         }
         return statistiquePerDay;
     }
@@ -77,5 +84,19 @@ public class HistoriqueAppelService {
         return todaysAppelWebService;
     }
 
-
+//    public List<StatistiquePerDay> getStatistiquePercentage() {
+//        List<WebService> webServices = this.webServiceRepository.findAll();
+//        List<StatistiquePerDay> statistiquePerDay = new ArrayList<>();
+//
+//        for (WebService ws : webServices) {
+//            for (HistoriqueAppel ha : ws.getHistoriqueAppels()){
+//
+//            }
+//            StatistiquePerDay aux = new StatistiquePerDay();
+//            aux.setLabel(ws.getUrl());
+//            aux.setData(this.getStatistiquePerDayByWebService(ws.getId()));
+//            statistiquePerDay.add(aux);
+//        }
+//        return statistiquePerDay;
+//    }
 }

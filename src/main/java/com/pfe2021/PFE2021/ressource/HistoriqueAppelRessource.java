@@ -2,6 +2,7 @@ package com.pfe2021.PFE2021.ressource;
 
 import com.pfe2021.PFE2021.model.HistoriqueAppel;
 import com.pfe2021.PFE2021.service.HistoriqueAppelService;
+import com.pfe2021.PFE2021.service.StatistiquePerDay;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +27,8 @@ public class HistoriqueAppelRessource {
     }
 
     @GetMapping("/statistiqueperday")
-    public ResponseEntity <int[]> getStatistiquePerDay(){
-        int[] statistiquePerDay = historiqueAppelService.getStatistiquePerDay();
+    public ResponseEntity <List<StatistiquePerDay>> getStatistiquePerDay(){
+        List<StatistiquePerDay> statistiquePerDay = historiqueAppelService.getStatistiquePerDay();
         return new ResponseEntity<>(statistiquePerDay, HttpStatus.OK);
     }
 

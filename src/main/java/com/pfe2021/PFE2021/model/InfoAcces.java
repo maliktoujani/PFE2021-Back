@@ -22,6 +22,8 @@ public class InfoAcces implements Serializable {
     @OneToOne
     private WebService webService;
 
+    //Les Getters, les Setters, un constructeur par défaut et un constructeur paramétré
+
     public InfoAcces(Long id, String commentaire) {
         this.id = id;
         this.commentaire = commentaire;

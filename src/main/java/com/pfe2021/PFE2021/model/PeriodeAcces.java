@@ -17,6 +17,8 @@ public class PeriodeAcces implements Serializable {
     @OneToOne
     private InfoAcces infoAcces;
 
+    //Les Getters, les Setters, un constructeur par défaut et un constructeur paramétré
+
     public PeriodeAcces(Long id, String jour, int heureDebut, int heureFin) {
         this.id = id;
         this.jour = jour;
