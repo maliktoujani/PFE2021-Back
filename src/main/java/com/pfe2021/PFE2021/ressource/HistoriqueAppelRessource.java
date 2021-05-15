@@ -2,6 +2,7 @@ package com.pfe2021.PFE2021.ressource;
 
 import com.pfe2021.PFE2021.model.HistoriqueAppel;
 import com.pfe2021.PFE2021.service.HistoriqueAppelService;
+import com.pfe2021.PFE2021.service.Statistique;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,16 +27,33 @@ public class HistoriqueAppelRessource {
     }
 
     @GetMapping("/statistiqueperday")
-    public ResponseEntity <int[]> getStatistiquePerDay(){
-        int[] statistiquePerDay = historiqueAppelService.getStatistiquePerDay();
-        return new ResponseEntity<>(statistiquePerDay, HttpStatus.OK);
+    public ResponseEntity <List<Statistique>> getStatistiquePerDay(){
+        List<Statistique> statistique = historiqueAppelService.getStatistiquePerDay();
+        return new ResponseEntity<>(statistique, HttpStatus.OK);
     }
 
-    @GetMapping("/statistiqueperday/{id}")
-    public ResponseEntity <int[]> getStatistiquePerDayByWebService(@PathVariable("id") Long id){
-        int[] statistiquePerDay = historiqueAppelService.getStatistiquePerDayByWebService(id);
-        return new ResponseEntity<>(statistiquePerDay, HttpStatus.OK);
+    @GetMapping("/statistiqueperdaybysolutionpartenaire")
+    public ResponseEntity <List<Statistique>> getStatistiquePerDayBySolutionPartenaire(){
+        List<Statistique> statistique = historiqueAppelService.getStatistiquePerDayBySolutionPartenaire();
+        return new ResponseEntity<>(statistique, HttpStatus.OK);
     }
+
+    @GetMapping("/statistiquepercentage")
+    public ResponseEntity <List<Statistique>> getStatistiquePercentage(){
+        List<Statistique> statistique = historiqueAppelService.getStatistiquePercentage();
+        return new ResponseEntity<>(statistique, HttpStatus.OK);
+    }
+
+    @GetMapping("/statistiquepercentagebysolutionpartenaire")
+    public ResponseEntity <List<Statistique>> getStatistiquePercentageBySolutionPartenaire(){
+        List<Statistique> statistique = historiqueAppelService.getStatistiquePercentageBySolutionPartenaire();
+        return new ResponseEntity<>(statistique, HttpStatus.OK);
+    }
+//    @GetMapping("/statistiquetopthree")
+//    public ResponseEntity <List<Statistique>> getTopThree(){
+//        List<Statistique> statistique = historiqueAppelService.getTopThree();
+//        return new ResponseEntity<>(statistique, HttpStatus.OK);
+//    }
 
     @GetMapping("/todaysappelwebservice")
     public ResponseEntity <List<HistoriqueAppel>> todaysAppelWebService(){

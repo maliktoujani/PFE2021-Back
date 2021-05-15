@@ -24,6 +24,8 @@ public class Contrat implements Serializable {
     @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL)
     private List<InfoAcces> infoAcces;
 
+    //Les Getters, les Setters, un constructeur par défaut et un constructeur paramétré
+
     public Contrat(Long id, Date dateDebut, Date dateFin, String label) {
         this.id = id;
         this.dateDebut = dateDebut;
@@ -89,7 +91,5 @@ public class Contrat implements Serializable {
     public void setInfoAcces(List<InfoAcces> infoAcces) {
         this.infoAcces = infoAcces;
     }
-
-
 
 }

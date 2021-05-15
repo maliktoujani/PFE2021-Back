@@ -22,6 +22,8 @@ public class WebService implements Serializable {
     @OneToMany( mappedBy = "webService", cascade = CascadeType.ALL )
     private List<HistoriqueAppel> historiqueAppels;
 
+    //Les Getters, les Setters, un constructeur par défaut et un constructeur paramétré
+
     public WebService(Long id, String url, String format, String methodeHttp) {
         this.id = id;
         this.url = url;

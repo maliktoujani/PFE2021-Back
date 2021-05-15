@@ -11,6 +11,8 @@ public class Administrateur implements Serializable {
     private String email;
     private String password;
 
+    //Les Getters, les Setters, un constructeur par défaut et un constructeur paramétré
+
     public Administrateur(String username, String email, String password) {
         this.username = username;
         this.email = email;

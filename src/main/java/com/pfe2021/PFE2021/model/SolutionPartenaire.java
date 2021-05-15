@@ -23,6 +23,8 @@ public class SolutionPartenaire implements Serializable {
     @OneToMany( mappedBy = "solutionPartenaire", cascade = CascadeType.ALL )
     private List<HistoriqueAppel> historiqueAppels;
 
+    //Les Getters, les Setters, un constructeur par défaut et un constructeur paramétré
+
     public SolutionPartenaire(Long id, String username, String password, String email, Long phone) {
         this.id = id;
         this.username = username;

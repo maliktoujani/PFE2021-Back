@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin/webservice")
 public class WebServiceRessource {
 
     private final WebServiceService webServiceService;
@@ -19,33 +18,42 @@ public class WebServiceRessource {
     }
 
 
-    @GetMapping("/all")
+    @GetMapping("/admin/webservice/all")
     public ResponseEntity<List<WebService>> getAllWebServices(){
         List<WebService>webServices=webServiceService.findAllWebServices();
         return new ResponseEntity<>(webServices, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{id}")
+    @GetMapping("/admin/webservice/find/{id}")
     public ResponseEntity<WebService> getWebServiceById(@PathVariable("id") Long id){
         WebService webService= webServiceService.findWebServiceById(id);
         return new ResponseEntity<>(webService, HttpStatus.OK);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/admin/webservice/add")
     public ResponseEntity<WebService> addWebService(@RequestBody WebService webService){
         WebService newWebService=webServiceService.addWebService(webService);
         return new ResponseEntity<>(webService, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/admin/webservice/update")
     public ResponseEntity<WebService> updateWebService(@RequestBody WebService webService){
         WebService updateWebService=webServiceService.updateWebService(webService);
         return new ResponseEntity<>(webService, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/admin/webservice/delete/{id}")
     public ResponseEntity<?> deleteWebService(@PathVariable("id") Long id){
         webServiceService.deleteWebService(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    //Consommation des web services
+    @GetMapping("/webservices/{id}/all")
+    public ResponseEntity<Object> getAll(@PathVariable("id") Long id) {
+        Object objects= webServiceService.findAll(id);
+        return new ResponseEntity<>(objects, HttpStatus.OK);
+    }
 }
+
+
