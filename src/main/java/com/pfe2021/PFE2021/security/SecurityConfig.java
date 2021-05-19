@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/webservices/**").hasRole("SOLUTIONPARTENAIRE")
+                .antMatchers("/webservice/**").hasRole("SOLUTIONPARTENAIRE")
                 .and()
                 .httpBasic();
     }

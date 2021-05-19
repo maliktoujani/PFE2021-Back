@@ -49,11 +49,6 @@ public class HistoriqueAppelRessource {
         List<Statistique> statistique = historiqueAppelService.getStatistiquePercentageBySolutionPartenaire();
         return new ResponseEntity<>(statistique, HttpStatus.OK);
     }
-//    @GetMapping("/statistiquetopthree")
-//    public ResponseEntity <List<Statistique>> getTopThree(){
-//        List<Statistique> statistique = historiqueAppelService.getTopThree();
-//        return new ResponseEntity<>(statistique, HttpStatus.OK);
-//    }
 
     @GetMapping("/todaysappelwebservice")
     public ResponseEntity <List<HistoriqueAppel>> todaysAppelWebService(){
