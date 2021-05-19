@@ -4,7 +4,6 @@ import com.pfe2021.PFE2021.exceptions.SolutionPartenaireNotFoundException;
 import com.pfe2021.PFE2021.model.*;
 import com.pfe2021.PFE2021.repository.SolutionPartenaireRepository;
 import com.pfe2021.PFE2021.repository.WebServiceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;

@@ -153,6 +153,20 @@ public class HistoriqueAppelService {
         return statistique;
     }
 
+//    public List<Statistique> getReussiEchec(){
+//        List<HistoriqueAppel> historiqueAppel = this.historiqueAppelRepository.findAll();
+//        List<Statistique> statistique = new ArrayList<>();
+//        int nb=0;
+//
+//        for(HistoriqueAppel ha : historiqueAppel ){
+//            if (ha.getResultat()){
+//                nb++;
+//            }
+//        }
+//
+//
+//    }
+
 //    public List<Statistique> getTopThree() {
 //        List<WebService> webServices = this.webServiceRepository.findAll();
 //        List<Statistique> statistiques = new ArrayList<>();
