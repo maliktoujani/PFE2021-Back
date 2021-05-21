@@ -44,6 +44,24 @@ public class HistoriqueAppelRessource {
         return new ResponseEntity<>(statistique, HttpStatus.OK);
     }
 
+    @GetMapping("/statistiquereussiteechec")
+    public ResponseEntity <List<Statistique>> getStatistiqueReussiteEchec(){
+        List<Statistique> statistique = historiqueAppelService.getReussiEchec();
+        return new ResponseEntity<>(statistique, HttpStatus.OK);
+    }
+
+    @GetMapping("/statistiquetop")
+    public ResponseEntity <Statistique> getStatistiqueTop(){
+        Statistique statistique = historiqueAppelService.getTop();
+        return new ResponseEntity<>(statistique, HttpStatus.OK);
+    }
+
+    @GetMapping("/statistiquetopsolutionpartenaire")
+    public ResponseEntity <Statistique> getStatistiqueTopSolutionPartenaire(){
+        Statistique statistique = historiqueAppelService.getTopSolutionPartenaire();
+        return new ResponseEntity<>(statistique, HttpStatus.OK);
+    }
+
     @GetMapping("/statistiquepercentagebysolutionpartenaire")
     public ResponseEntity <List<Statistique>> getStatistiquePercentageBySolutionPartenaire(){
         List<Statistique> statistique = historiqueAppelService.getStatistiquePercentageBySolutionPartenaire();
