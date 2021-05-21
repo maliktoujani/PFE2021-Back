@@ -140,7 +140,7 @@ public class HistoriqueAppelService {
     }
 
     public List<Statistique> getStatistiquePercentageBySolutionPartenaire() {
-        List<Statistique> statistique = new ArrayList<>();
+        List<Statistique> statistiques = new ArrayList<>();
         List<SolutionPartenaire> solutionPartenaires = this.solutionPartenaireRepository.findAll();
 
         Statistique aux = new Statistique();
@@ -149,44 +149,94 @@ public class HistoriqueAppelService {
             aux.getLabel().add(sp.getUsername());
             aux.getData().add(sp.getHistoriqueAppels().size());
         }
+        statistiques.add(aux);
+        return statistiques;
+    }
+
+    public List<Statistique> getReussiEchec(){
+        List<HistoriqueAppel> historiqueAppel = this.historiqueAppelRepository.findAll();
+        List<Statistique> statistique = new ArrayList<>();
+        int nb=0;
+
+        for(HistoriqueAppel ha : historiqueAppel ){
+            if (ha.getResultat()){
+                nb++;
+            }
+        }
+
+        Statistique aux = new Statistique();
+
+        aux.getLabel().add("Reussite");
+        aux.getData().add(nb);
+        aux.getLabel().add("Echec");
+        aux.getData().add(historiqueAppel.size() - nb);
+
         statistique.add(aux);
+
         return statistique;
     }
 
-//    public List<Statistique> getReussiEchec(){
-//        List<HistoriqueAppel> historiqueAppel = this.historiqueAppelRepository.findAll();
-//        List<Statistique> statistique = new ArrayList<>();
-//        int nb=0;
-//
-//        for(HistoriqueAppel ha : historiqueAppel ){
-//            if (ha.getResultat()){
-//                nb++;
-//            }
-//        }
-//
-//
-//    }
+    public Statistique getTop() {
+        List<WebService> webServices = this.webServiceRepository.findAll();
+        Statistique statistiques = new Statistique();
 
-//    public List<Statistique> getTopThree() {
-//        List<WebService> webServices = this.webServiceRepository.findAll();
-//        List<Statistique> statistiques = new ArrayList<>();
-//
-//        int max=0;
-//
-//        for (int i=0; i<3; i++){
-//            Statistique aux = new Statistique();
-//            WebService wsaux = new WebService();
-//            for (WebService ws : webServices) {
-//                if (ws.getHistoriqueAppels().size() > max){
-//                    max=ws.getHistoriqueAppels().size();
-//                    wsaux=ws;
-//                }
-//            }
-//            aux.getLabel().add(wsaux.getUrl());
-//            aux.getData().add(max);
-//            statistiques.add(aux);
-//            webServices.remove(wsaux);
-//        }
-//        return statistiques;
-//    }
+        int max=0;
+        WebService aux;
+        Statistique stat;
+
+        aux = new WebService();
+
+        for (WebService ws : webServices) {
+            if (ws.getHistoriqueAppels().size() > max){
+                max=ws.getHistoriqueAppels().size();
+                aux=ws;
+            }
+        }
+
+        int reussite=0;
+        for (HistoriqueAppel ha : findAllHistoriqueAppel()){
+            if (ha.getResultat()) reussite++;
+        }
+
+        statistiques.getLabel().add(aux.getUrl());
+        statistiques.getData().add(aux.getHistoriqueAppels().size());
+        statistiques.getLabel().add("Reussite");
+        statistiques.getData().add(reussite);
+        statistiques.getLabel().add("Echec");
+        statistiques.getData().add(aux.getHistoriqueAppels().size() - reussite);
+
+        return statistiques;
+    }
+
+    public Statistique getTopSolutionPartenaire() {
+        List<SolutionPartenaire> solutionPartenaires = this.solutionPartenaireRepository.findAll();
+        Statistique statistiques = new Statistique();
+
+        int max=0;
+        SolutionPartenaire aux;
+        Statistique stat;
+
+        aux = new SolutionPartenaire();
+
+        for (SolutionPartenaire sp : solutionPartenaires) {
+            if (sp.getHistoriqueAppels().size() > max){
+                max=sp.getHistoriqueAppels().size();
+                aux=sp;
+            }
+        }
+
+        int reussite=0;
+        for (HistoriqueAppel ha : findAllHistoriqueAppel()){
+            if (ha.getResultat()) reussite++;
+        }
+
+        statistiques.getLabel().add(aux.getUsername());
+        statistiques.getData().add(aux.getHistoriqueAppels().size());
+        statistiques.getLabel().add("Reussite");
+        statistiques.getData().add(reussite);
+        statistiques.getLabel().add("Echec");
+        statistiques.getData().add(aux.getHistoriqueAppels().size() - reussite);
+
+        return statistiques;
+    }
 }

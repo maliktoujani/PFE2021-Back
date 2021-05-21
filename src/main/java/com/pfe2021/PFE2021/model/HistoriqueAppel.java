@@ -14,7 +14,6 @@ public class HistoriqueAppel implements Serializable {
     private Long id;
     private Boolean resultat;
     private LocalDateTime dateHeure;
-    private String details;
     @JsonIgnoreProperties(value = {"historiqueAppels"})
     @OneToOne
     private WebService webService;
@@ -24,11 +23,10 @@ public class HistoriqueAppel implements Serializable {
 
     //Les Getters, les Setters, un constructeur par défaut et un constructeur paramétré
 
-    public HistoriqueAppel(Long id, Boolean resultat, LocalDateTime dateHeure, String details) {
+    public HistoriqueAppel(Long id, Boolean resultat, LocalDateTime dateHeure) {
         this.id = id;
         this.resultat = resultat;
         this.dateHeure = dateHeure;
-        this.details = details;
     }
 
     public HistoriqueAppel() {
@@ -56,14 +54,6 @@ public class HistoriqueAppel implements Serializable {
 
     public void setDateHeure(LocalDateTime dateHeure) {
         this.dateHeure = dateHeure;
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
     }
 
     public WebService getWebService() {
