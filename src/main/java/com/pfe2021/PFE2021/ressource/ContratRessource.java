@@ -18,7 +18,6 @@ public class ContratRessource {
         this.contratService=contratService;
     }
 
-
     @GetMapping("/all")
     public ResponseEntity<List<Contrat>> getAllContrats(){
         List<Contrat>contrats=contratService.findAllContrats();

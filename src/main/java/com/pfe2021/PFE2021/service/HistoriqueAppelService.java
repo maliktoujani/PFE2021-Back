@@ -194,7 +194,7 @@ public class HistoriqueAppelService {
         }
 
         int reussite=0;
-        for (HistoriqueAppel ha : findAllHistoriqueAppel()){
+        for (HistoriqueAppel ha : aux.getHistoriqueAppels()){
             if (ha.getResultat()) reussite++;
         }
 
@@ -226,7 +226,7 @@ public class HistoriqueAppelService {
         }
 
         int reussite=0;
-        for (HistoriqueAppel ha : findAllHistoriqueAppel()){
+        for (HistoriqueAppel ha : aux.getHistoriqueAppels()){
             if (ha.getResultat()) reussite++;
         }
 
