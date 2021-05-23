@@ -58,7 +58,9 @@ public class WebServiceService {
 
         LocalDateTime now = LocalDateTime.now();
 
-        Object[] objects = null;
+        Object objects = new Object();
+
+        boolean verif = false;
 
         for(Contrat c : solutionPartenaire.getContrats()){
             for(InfoAcces ia : c.getInfoAcces()){
@@ -67,6 +69,7 @@ public class WebServiceService {
                         if (pa.getJour().equalsIgnoreCase(now.getDayOfWeek().toString())) {
                             if (pa.getHeureDebut() <= now.getHour() && pa.getHeureFin() > now.getHour()) {
                                 objects = restTemplate.getForObject(webService.getUrl(), Object[].class);
+                                verif = true;
                             }
                         }
                     }
@@ -77,7 +80,7 @@ public class WebServiceService {
         HistoriqueAppel historiqueAppel = new HistoriqueAppel();
 
         historiqueAppel.setDateHeure(now);
-        historiqueAppel.setResultat(objects!=null);
+        historiqueAppel.setResultat(verif);
         historiqueAppel.setSolutionPartenaire(solutionPartenaire);
         historiqueAppel.setWebService(webService);
 
