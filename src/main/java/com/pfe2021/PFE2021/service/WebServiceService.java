@@ -48,18 +48,32 @@ public class WebServiceService {
         webServiceRepository.deleteWebServiceById(id);
     }
 
-    public Object findAll(Long id) {
+    //Consommation des web services
+    public Object get(Long id) {
         WebService webService = webServiceRepository.findWebServiceById(id).get();
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-
-        SolutionPartenaire solutionPartenaire = solutionPartenaireRepository.findSolutionPartenaireByUsername(currentPrincipalName).get();
-
-        LocalDateTime now = LocalDateTime.now();
-
         Object objects = new Object();
 
+        if (hasAcces(webService)){
+            objects = restTemplate.getForObject(webService.getUrl(), Object[].class);
+        }
+        return objects;
+    }
+
+    public Object post(Long id, Object request) {
+        WebService webService = webServiceRepository.findWebServiceById(id).get();
+        Object objects = new Object();
+
+        if (hasAcces(webService)){
+            objects = restTemplate.postForObject(webService.getUrl(), request, Object.class);
+        }
+        return objects;
+    }
+
+    public boolean hasAcces(WebService webService){
+        LocalDateTime now = LocalDateTime.now();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        SolutionPartenaire solutionPartenaire = solutionPartenaireRepository.findSolutionPartenaireByUsername(currentPrincipalName).get();
         boolean verif = false;
 
         for(Contrat c : solutionPartenaire.getContrats()){
@@ -68,7 +82,6 @@ public class WebServiceService {
                     for (PeriodeAcces pa : ia.getPeriodeAcces()) {
                         if (pa.getJour().equalsIgnoreCase(now.getDayOfWeek().toString())) {
                             if (pa.getHeureDebut() <= now.getHour() && pa.getHeureFin() > now.getHour()) {
-                                objects = restTemplate.getForObject(webService.getUrl(), Object[].class);
                                 verif = true;
                             }
                         }
@@ -76,17 +89,14 @@ public class WebServiceService {
                 }
             }
         }
-
         HistoriqueAppel historiqueAppel = new HistoriqueAppel();
-
         historiqueAppel.setDateHeure(now);
         historiqueAppel.setResultat(verif);
         historiqueAppel.setSolutionPartenaire(solutionPartenaire);
         historiqueAppel.setWebService(webService);
-
         this.historiqueAppelService.addHistoriqueAppel(historiqueAppel);
 
-        return objects;
+        return verif;
     }
 
 }
