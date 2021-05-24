@@ -51,7 +51,13 @@ public class WebServiceRessource {
     //Consommation des web services
     @GetMapping("/webservice/{id}")
     public ResponseEntity<Object> getAll(@PathVariable("id") Long id) {
-        Object objects= webServiceService.findAll(id);
+        Object objects= webServiceService.get(id);
+        return new ResponseEntity<>(objects, HttpStatus.OK);
+    }
+
+    @PostMapping("/webservice/{id}")
+    public ResponseEntity<Object> getAll(@PathVariable("id") Long id, @RequestBody Object request) {
+        Object objects= webServiceService.post(id, request);
         return new ResponseEntity<>(objects, HttpStatus.OK);
     }
 }
