@@ -125,37 +125,35 @@ public class HistoriqueAppelService {
         return todaysAppelWebService;
     }
 
-    public List<Statistique> getStatistiquePercentage() {
-        List<Statistique> statistique = new ArrayList<>();
+    public Statistique getStatistiquePercentage() {
+        Statistique statistique;
         List<WebService> webServices = this.webServiceRepository.findAll();
-
         Statistique aux = new Statistique();
 
         for (WebService ws : webServices) {
             aux.getLabel().add(ws.getUrl());
             aux.getData().add(ws.getHistoriqueAppels().size());
         }
-        statistique.add(aux);
+        statistique =aux;
         return statistique;
     }
 
-    public List<Statistique> getStatistiquePercentageBySolutionPartenaire() {
-        List<Statistique> statistiques = new ArrayList<>();
+    public Statistique getStatistiquePercentageBySolutionPartenaire() {
+        Statistique statistiqueLists;
         List<SolutionPartenaire> solutionPartenaires = this.solutionPartenaireRepository.findAll();
-
         Statistique aux = new Statistique();
 
         for (SolutionPartenaire sp : solutionPartenaires) {
             aux.getLabel().add(sp.getUsername());
             aux.getData().add(sp.getHistoriqueAppels().size());
         }
-        statistiques.add(aux);
-        return statistiques;
+        statistiqueLists = aux;
+        return statistiqueLists;
     }
 
-    public List<Statistique> getReussiEchec(){
+    public Statistique getReussiEchec(){
         List<HistoriqueAppel> historiqueAppel = this.historiqueAppelRepository.findAll();
-        List<Statistique> statistique = new ArrayList<>();
+        Statistique statistique;
         int nb=0;
 
         for(HistoriqueAppel ha : historiqueAppel ){
@@ -171,7 +169,7 @@ public class HistoriqueAppelService {
         aux.getLabel().add("Echec");
         aux.getData().add(historiqueAppel.size() - nb);
 
-        statistique.add(aux);
+        statistique = aux;
 
         return statistique;
     }

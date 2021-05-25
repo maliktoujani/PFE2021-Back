@@ -8,11 +8,6 @@ public class Statistique {
     private List<Integer> data = new ArrayList<>();
     private List<String> label = new ArrayList<>();
 
-    public Statistique(List<Integer> data, List<String> label) {
-        this.data = data;
-        this.label = label;
-    }
-
     public Statistique() {
     }
 
