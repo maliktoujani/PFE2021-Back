@@ -6,20 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
-public class UserService {
+public class AdministrateurService {
     private final AdministrateurRepository administrateurRepository;
 
     @Autowired
-    public UserService (AdministrateurRepository administrateurRepository){
+    public AdministrateurService(AdministrateurRepository administrateurRepository){
         this.administrateurRepository = administrateurRepository;
     }
 
-    public List<Administrateur> findAllUsers(){
-        return administrateurRepository.findAll();
+    public Optional<Administrateur> findUser(String userame){
+        return administrateurRepository.findById(userame);
     }
 
 }
