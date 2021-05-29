@@ -49,51 +49,51 @@ public class WebServiceService {
     }
 
     //Consommation des web services
-    public Object get(Long id) {
+    public Object get(Long id, String methodeHttp) {
         WebService webService = webServiceRepository.findWebServiceById(id).get();
         Object objects = new Object();
 
         if (hasAcces(webService)){
-            objects = restTemplate.getForObject(webService.getUrl()+"/get", Object[].class);
+            objects = restTemplate.getForObject(webService.getUrl()+"/"+methodeHttp, Object[].class);
         }
         return objects;
     }
 
-    public Object find(Long id, Long idEntity) {
+    public Object find(Long id, Long idEntity, String methodeHttp) {
         WebService webService = webServiceRepository.findWebServiceById(id).get();
         Object objects = new Object();
 
         if (hasAcces(webService)){
-            objects = restTemplate.getForObject(webService.getUrl()+"/find/"+idEntity, Object.class);
+            objects = restTemplate.getForObject(webService.getUrl()+"/"+methodeHttp+"/"+idEntity, Object.class);
         }
         return objects;
     }
 
-    public Object post(Long id, Object request) {
+    public Object post(Long id, Object request, String methodeHttp) {
         WebService webService = webServiceRepository.findWebServiceById(id).get();
         Object objects = new Object();
 
         if (hasAcces(webService)){
-            objects = restTemplate.postForObject(webService.getUrl()+"/post", request, Object.class);
+            objects = restTemplate.postForObject(webService.getUrl()+"/"+methodeHttp, request, Object.class);
         }
         return objects;
     }
 
-    public void put(Long id, Object request) {
+    public void put(Long id, Object request, String methodeHttp) {
         WebService webService = webServiceRepository.findWebServiceById(id).get();
         Object objects = new Object();
 
         if (hasAcces(webService)){
-            restTemplate.put(webService.getUrl()+"/put", request, Object.class);
+            restTemplate.put(webService.getUrl()+"/"+methodeHttp, request, Object.class);
         }
     }
 
-    public void delete(Long id, Long idEntity) {
+    public void delete(Long id, Long idEntity, String methodeHttp) {
         WebService webService = webServiceRepository.findWebServiceById(id).get();
         Object objects = new Object();
 
         if (hasAcces(webService)){
-            restTemplate.delete(webService.getUrl()+"/delete/"+idEntity);
+            restTemplate.delete(webService.getUrl()+"/"+methodeHttp+"/"+idEntity);
         }
     }
 
