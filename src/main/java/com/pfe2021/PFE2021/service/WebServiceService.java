@@ -54,7 +54,17 @@ public class WebServiceService {
         Object objects = new Object();
 
         if (hasAcces(webService)){
-            objects = restTemplate.getForObject(webService.getUrl(), Object[].class);
+            objects = restTemplate.getForObject(webService.getUrl()+"/get", Object[].class);
+        }
+        return objects;
+    }
+
+    public Object find(Long id, Long idEntity) {
+        WebService webService = webServiceRepository.findWebServiceById(id).get();
+        Object objects = new Object();
+
+        if (hasAcces(webService)){
+            objects = restTemplate.getForObject(webService.getUrl()+"/find/"+idEntity, Object.class);
         }
         return objects;
     }
@@ -64,9 +74,27 @@ public class WebServiceService {
         Object objects = new Object();
 
         if (hasAcces(webService)){
-            objects = restTemplate.postForObject(webService.getUrl(), request, Object.class);
+            objects = restTemplate.postForObject(webService.getUrl()+"/post", request, Object.class);
         }
         return objects;
+    }
+
+    public void put(Long id, Object request) {
+        WebService webService = webServiceRepository.findWebServiceById(id).get();
+        Object objects = new Object();
+
+        if (hasAcces(webService)){
+            restTemplate.put(webService.getUrl()+"/put", request, Object.class);
+        }
+    }
+
+    public void delete(Long id, Long idEntity) {
+        WebService webService = webServiceRepository.findWebServiceById(id).get();
+        Object objects = new Object();
+
+        if (hasAcces(webService)){
+            restTemplate.delete(webService.getUrl()+"/delete/"+idEntity);
+        }
     }
 
     public boolean hasAcces(WebService webService){
