@@ -49,33 +49,33 @@ public class WebServiceRessource {
     }
 
     //Consommation des web services
-    @GetMapping("/webservice/{id}/get")
-    public ResponseEntity<Object> get(@PathVariable("id") Long id) {
-        Object objects= webServiceService.get(id);
+    @GetMapping("/webservice/{id}/{methodeHttp}")
+    public ResponseEntity<Object> get(@PathVariable("id") Long id, @PathVariable("methodeHttp") String methodeHttp) {
+        Object objects= webServiceService.get(id, methodeHttp);
         return new ResponseEntity<>(objects, HttpStatus.OK);
     }
 
-    @GetMapping("/webservice/{id}/find/{idEntity}")
-    public ResponseEntity<Object> get(@PathVariable("id") Long id, @PathVariable("idEntity") Long idEntity) {
-        Object objects= webServiceService.find(id, idEntity);
+    @GetMapping("/webservice/{id}/{methodeHttp}/{idEntity}")
+    public ResponseEntity<Object> find(@PathVariable("id") Long id, @PathVariable("idEntity") Long idEntity, @PathVariable("methodeHttp") String methodeHttp) {
+        Object objects= webServiceService.find(id, idEntity, methodeHttp);
         return new ResponseEntity<>(objects, HttpStatus.OK);
     }
 
-    @PostMapping("/webservice/{id}/post")
-    public ResponseEntity<Object> post(@PathVariable("id") Long id, @RequestBody Object request) {
-        Object objects= webServiceService.post(id, request);
+    @PostMapping("/webservice/{id}/{methodeHttp}")
+    public ResponseEntity<Object> post(@PathVariable("id") Long id, @RequestBody Object request, @PathVariable("methodeHttp") String methodeHttp) {
+        Object objects= webServiceService.post(id, request, methodeHttp);
         return new ResponseEntity<>(objects, HttpStatus.OK);
     }
 
-    @PutMapping("/webservice/{id}/put")
-    public ResponseEntity<Object> put(@PathVariable("id") Long id, @RequestBody Object request) {
-        webServiceService.put(id, request);
+    @PutMapping("/webservice/{id}/{methodeHttp}")
+    public ResponseEntity<Object> put(@PathVariable("id") Long id, @RequestBody Object request, @PathVariable("methodeHttp") String methodeHttp) {
+        webServiceService.put(id, request, methodeHttp);
         return new ResponseEntity<>(request, HttpStatus.OK);
     }
 
-    @DeleteMapping("/webservice/{id}/delete/{idEntity}")
-    public ResponseEntity<Object> put(@PathVariable("id") Long id, @PathVariable("idEntity") Long idEntity) {
-        webServiceService.delete(id, idEntity);
+    @DeleteMapping("/webservice/{id}/{methodeHttp}/{idEntity}")
+    public ResponseEntity<Object> delete(@PathVariable("id") Long id, @PathVariable("idEntity") Long idEntity, @PathVariable("methodeHttp") String methodeHttp) {
+        webServiceService.delete(id, idEntity, methodeHttp);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -2,10 +2,12 @@ package com.pfe2021.PFE2021.ressource;
 
 import com.pfe2021.PFE2021.model.Contrat;
 import com.pfe2021.PFE2021.service.ContratService;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 @RestController
@@ -46,6 +48,11 @@ public class ContratRessource {
     public ResponseEntity<?> deleteContrat(@PathVariable("id") Long id){
         contratService.deleteContrat(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/report/{idContrat}")
+    public String generateReport(@PathVariable("idContrat") Long idContrat) throws FileNotFoundException, JRException{
+        return contratService.exportReport(idContrat);
     }
 }
 
